@@ -1,0 +1,38 @@
+{
+	"info": {
+		"_postman_id": "494dae22-c1b4-45a3-9e22-fcb8b5f633e2",
+		"name": "Cirrhosis Predictions API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8146186"
+	},
+	"item": [
+		{
+			"name": "Predict",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"N_Days\": 123,\n    \"Drug\": \"any\",\n    \"Age\": 12,\n    \"Sex\": \"any\",\n    \"Ascites\": \"any\",\n    \"Hepatomegaly\": \"any\",\n    \"Spiders\": \"any\",\n    \"Edema\": \"any\",\n    \"Bilirubin\": 123,\n    \"Cholesterol\": 123,\n    \"Albumin\": 123,\n    \"Copper\": 123,\n    \"Alk_Phos\": 123,\n    \"SGOT\": 123,\n    \"Tryglicerides\": 123,\n    \"Platelets\": 123,\n    \"Prothrombin\": 123,\n    \"Stage\": 1\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8000/predict",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"predict"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
