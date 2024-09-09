@@ -1,5 +1,5 @@
 from fastapi import FastAPI # type: ignore
-from request import Request
+from helpers.request import Request
 import pandas as pd
 from helpers.feature_engine import FeatureEngine
 

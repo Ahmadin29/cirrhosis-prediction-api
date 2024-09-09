@@ -10,7 +10,6 @@
 # Tryglicerides_Category = None
 # Platelets_Category = None
 # Prothrombin_Category = None
-from request import Request
 
 class FeatureEngine:
     def __init__(self, basic_features):
