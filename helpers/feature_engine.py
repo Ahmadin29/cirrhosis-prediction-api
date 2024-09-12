@@ -62,7 +62,7 @@ class FeatureEngine:
         else:
             return 0
         
-    def calculate_troglicerides_category(self):
+    def calculate_tryglicerides_category(self):
         if self.data['Tryglicerides'] <= 150:
             return 0
         elif self.data['Tryglicerides'] > 150:

@@ -1,0 +1,244 @@
+<html lang="en">
+  <head>
+    <title>AI Final Project</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  </head>
+  <body>
+    <div class="bg-sky-100 flex items-center justify-center min-h-[100vh]" >
+      <div class="bg-white w-[90%] max-w-[400px] p-4 rounded shadow-lg my-10">
+        <h1 class="text-xl font-semibold" >Chirrosis Predictions</h1>
+        <hr class="my-[10px]"/>
+        <div class="form flex flex-col">
+          <input
+            id="N_Days"
+            placeholder="Days Left"
+            class="border p-2 rounded-sm flex-1 mb-[10px]"
+          />
+          <select
+            id="Drug"
+            class="border p-2 rounded-sm flex-1 mb-[10px] text-gray-400"
+          >
+            <option>Drug Used</option>
+            <option value="0">Placebo</option>
+            <option value="1">D-penicillamine</option>
+          </select>
+          <input
+            id="Age"
+            placeholder="Age in days"
+            class="border p-2 rounded-sm flex-1 mb-[10px]"
+          />
+          <select
+            id="Sex"
+            class="border p-2 rounded-sm flex-1 mb-[10px] text-gray-400"
+          >
+            <option>Your Gender</option>
+            <option value="0">Male</option>
+            <option value="1">Female</option>
+          </select>
+          <select
+            id="Ascites"
+            class="border p-2 rounded-sm flex-1 mb-[10px] text-gray-400"
+          >
+            <option>Ascites Status</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <select
+            id="Hepatomegaly"
+            class="border p-2 rounded-sm flex-1 mb-[10px] text-gray-400"
+          >
+            <option>Hepatomegaly Status</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <select
+            id="Spiders"
+            class="border p-2 rounded-sm flex-1 mb-[10px] text-gray-400"
+          >
+            <option>Spiders Status</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+          </select>
+          <select
+            id="Edema"
+            class="border p-2 rounded-sm flex-1 mb-[10px] text-gray-400"
+          >
+            <option>Edema Status</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+            <option value="2">Resolved</option>
+          </select>
+          <input
+            id="Bilirubin"
+            placeholder="Bilirubin in [mg/dl]"
+            class="border p-2 rounded-sm flex-1 mb-[10px]"
+          />
+          <input
+            id="Cholesterol"
+            placeholder="Cholesterol in [mg/dl]"
+            class="border p-2 rounded-sm flex-1 mb-[10px]"
+          />
+          <input
+            id="Albumin"
+            placeholder="Albumin in [gm/dl]"
+            class="border p-2 rounded-sm flex-1 mb-[10px]"
+          />
+          <input
+            id="Copper"
+            placeholder="Urine Copper in [ug/day]"
+            class="border p-2 rounded-sm flex-1 mb-[10px]"
+          />
+          <input
+            id="Alk_Phos"
+            placeholder="Alkaline Phosphatase in [U/liter]"
+            class="border p-2 rounded-sm flex-1 mb-[10px]"
+          />
+          <input
+            id="SGOT"
+            placeholder="SGOT in [U/ml]"
+            class="border p-2 rounded-sm flex-1 mb-[10px]"
+          />
+          <input
+            id="Tryglicerides"
+            placeholder="Triglycerides in [mg/dl]"
+            class="border p-2 rounded-sm flex-1 mb-[10px]"
+          />
+          <input
+            id="Platelets"
+            placeholder="Platelets per cubic [ml/1000]"
+            class="border p-2 rounded-sm flex-1 mb-[10px]"
+          />
+          <input
+            id="Prothrombin"
+            placeholder="Prothrombin time in seconds [s]"
+            class="border p-2 rounded-sm flex-1 mb-[10px]"
+          />
+          <select
+            id="Stage"
+            class="border p-2 rounded-sm flex-1 mb-[10px] text-gray-400"
+          >
+            <option>Histologic stage of disease (1, 2, 3, or 4)</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">4</option>
+          </select>
+        </div>
+        <hr class="my-[10px]"/>
+        <button class="w-full bg-sky-500 text-white p-[10px] rounded-md" onclick="predict()">
+          Try to Predict
+        </button>
+      </div>
+    </div>
+  </body>
+  <script>
+    function predict() {
+      const N_Days = document.getElementById("N_Days").value;
+      const Drug = document.getElementById("Drug").value;
+      const Age = document.getElementById("Age").value;
+      const Sex = document.getElementById("Sex").value;
+      const Ascites = document.getElementById("Ascites").value;
+      const Hepatomegaly = document.getElementById("Hepatomegaly").value;
+      const Spiders = document.getElementById("Spiders").value;
+      const Edema = document.getElementById("Edema").value;
+      const Bilirubin = document.getElementById("Bilirubin").value;
+      const Cholesterol = document.getElementById("Cholesterol").value;
+      const Albumin = document.getElementById("Albumin").value;
+      const Copper = document.getElementById("Copper").value;
+      const Alk_Phos = document.getElementById("Alk_Phos").value;
+      const SGOT = document.getElementById("SGOT").value;
+      const Tryglicerides = document.getElementById("Tryglicerides").value;
+      const Platelets = document.getElementById("Platelets").value;
+      const Prothrombin = document.getElementById("Prothrombin").value;
+      const Stage = document.getElementById("Stage").value;
+
+      fetch("http://127.0.0.1:8000/predict", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        // body: JSON.stringify({
+        //   N_Days: N_Days,
+        //   Drug: Drug,
+        //   Age: Age,
+        //   Sex: Sex,
+        //   Ascites: Ascites,
+        //   Hepatomegaly: Hepatomegaly,
+        //   Spiders: Spiders,
+        //   Edema: Edema,
+        //   Bilirubin: Bilirubin,
+        //   Cholesterol: Cholesterol,
+        //   Albumin: Albumin,
+        //   Copper: Copper,
+        //   Alk_Phos: Alk_Phos,
+        //   SGOT: SGOT,
+        //   Tryglicerides: Tryglicerides,
+        //   Platelets: Platelets,
+        //   Prothrombin: Prothrombin,
+        //   Stage: Stage,
+        // }),
+
+        //DEATH
+        // body: JSON.stringify({
+        //   "N_Days": 999,
+        //   "Drug": 1,
+        //   "Age": 21532,
+        //   "Sex": 0,
+        //   "Ascites": 0,
+        //   "Hepatomegaly": 0,
+        //   "Spiders": 0,
+        //   "Edema": 0,
+        //   "Bilirubin": 2.3,
+        //   "Cholesterol": 316,
+        //   "Albumin": 3.35,
+        //   "Copper": 172,
+        //   "Alk_Phos": 1601,
+        //   "SGOT": 179.8,
+        //   "Tryglicerides": 63,
+        //   "Platelets": 394,
+        //   "Prothrombin": 9.7,
+        //   "Stage": 3
+        // }),
+
+        //ALIVE
+        // body: JSON.stringify({
+        //   "N_Days": 2574,
+        //   "Drug": 0,
+        //   "Age": 19237,
+        //   "Sex": 1,
+        //   "Ascites": 0,
+        //   "Hepatomegaly": 0,
+        //   "Spiders": 0,
+        //   "Edema": 0,
+        //   "Bilirubin": 0.9,
+        //   "Cholesterol": 364,
+        //   "Albumin": 3.54,
+        //   "Copper": 63,
+        //   "Alk_Phos": 1440,
+        //   "SGOT": 134.85,
+        //   "Tryglicerides": 88,
+        //   "Platelets": 361,
+        //   "Prothrombin": 11,
+        //   "Stage": 3
+        // }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          const prediction = data.prediction[0];
+          const prediction_class =
+            prediction === 0 ? "Probably Normal" :
+            prediction === 1 ? "Probably Needs Transplant" :
+            prediction === 2 ? "Probably Death" :
+            "Unknown";
+            
+            Swal.fire({
+              title: 'Prediction Completed!',
+              text: `Your prediction is ${prediction_class}`,
+              icon: 'info',
+              confirmButtonText: 'Close'
+            })
+        });
+    }
+  </script>
+</html>

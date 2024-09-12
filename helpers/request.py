@@ -2,13 +2,13 @@ from pydantic import BaseModel
 
 class Request(BaseModel):
     N_Days: int = None
-    Drug: str = None
+    Drug: int = None
     Age: int = None
-    Sex: str = None
-    Ascites: str = None
-    Hepatomegaly: str = None
-    Spiders: str = None
-    Edema: str = None
+    Sex: int = None
+    Ascites: int = None
+    Hepatomegaly: int = None
+    Spiders: int = None
+    Edema: int = None
     Bilirubin: float = None
     Cholesterol: float = None
     Albumin: float = None
