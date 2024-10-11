@@ -229,12 +229,12 @@
           const prediction_class =
             prediction === 0 ? "probably will be normal" :
             prediction === 1 ? "probably need to have transplant in future" :
-            prediction === 2 ? "probably will needs intensive treatment in future" :
+            prediction === 2 ? "probably will need intensive treatment in future" :
             "Unknown";
             
             Swal.fire({
               title: 'Prediction Completed!',
-              text: `Your prediction is ${prediction_class}`,
+              text: `Your prediction is, you ${prediction_class}`,
               icon: 'info',
               confirmButtonText: 'Close'
             })
