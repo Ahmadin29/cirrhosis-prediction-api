@@ -179,27 +179,27 @@
         //   Stage: Stage,
         // }),
 
-        //DEATH
-        // body: JSON.stringify({
-        //   "N_Days": 999,
-        //   "Drug": 1,
-        //   "Age": 21532,
-        //   "Sex": 0,
-        //   "Ascites": 0,
-        //   "Hepatomegaly": 0,
-        //   "Spiders": 0,
-        //   "Edema": 0,
-        //   "Bilirubin": 2.3,
-        //   "Cholesterol": 316,
-        //   "Albumin": 3.35,
-        //   "Copper": 172,
-        //   "Alk_Phos": 1601,
-        //   "SGOT": 179.8,
-        //   "Tryglicerides": 63,
-        //   "Platelets": 394,
-        //   "Prothrombin": 9.7,
-        //   "Stage": 3
-        // }),
+        // DEATH
+        body: JSON.stringify({
+          "N_Days": 999,
+          "Drug": 1,
+          "Age": 21532,
+          "Sex": 0,
+          "Ascites": 0,
+          "Hepatomegaly": 0,
+          "Spiders": 0,
+          "Edema": 0,
+          "Bilirubin": 2.3,
+          "Cholesterol": 316,
+          "Albumin": 3.35,
+          "Copper": 172,
+          "Alk_Phos": 1601,
+          "SGOT": 179.8,
+          "Tryglicerides": 63,
+          "Platelets": 394,
+          "Prothrombin": 9.7,
+          "Stage": 3
+        }),
 
         //ALIVE
         // body: JSON.stringify({
@@ -227,9 +227,9 @@
         .then((data) => {
           const prediction = data.prediction[0];
           const prediction_class =
-            prediction === 0 ? "Probably Normal" :
-            prediction === 1 ? "Probably Needs Transplant" :
-            prediction === 2 ? "Probably Death" :
+            prediction === 0 ? "probably will be normal" :
+            prediction === 1 ? "probably need to have transplant in future" :
+            prediction === 2 ? "probably will needs intensive treatment in future" :
             "Unknown";
             
             Swal.fire({
